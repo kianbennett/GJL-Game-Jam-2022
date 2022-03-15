@@ -6,12 +6,14 @@ public class Lever : MonoBehaviour
 {
     private bool leverOn;
     private Animator anim;
+    private bool playerInRange;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         leverOn = false;
         this.GetComponent<TriggerObject>().active = false;
+        playerInRange = false;
     }
     public void PullLever()
     {
@@ -32,9 +34,23 @@ public class Lever : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && playerInRange)
         {
             PullLever();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerInRange = false;
         }
     }
 }
