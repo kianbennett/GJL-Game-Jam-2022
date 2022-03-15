@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7380575884242450930}
   - component: {fileID: 7380575884242450931}
   - component: {fileID: 7380575884242450932}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7380575884242450931
 ParticleSystem:
@@ -285,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5.49
+      scalar: 3.49
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -663,7 +663,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 7.24
+    angle: 3.72
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -1306,7 +1306,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.75686276}
+        key0: {r: 1, g: 1, b: 1, a: 0.34117648}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4787,7 +4787,7 @@ ParticleSystemRenderer:
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
-  m_MinParticleSize: 0.06
+  m_MinParticleSize: 0.04
   m_MaxParticleSize: 94.4
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
