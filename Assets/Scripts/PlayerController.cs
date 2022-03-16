@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController[] Characters;
 
-    private int ActiveCharacter;
+    [HideInInspector] public int ActiveCharacter;
 
     void Awake()
     {

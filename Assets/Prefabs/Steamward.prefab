@@ -135,7 +135,7 @@ MonoBehaviour:
   TurnSpeed: 4
   ModelTransform: {fileID: 2931296157777668235}
   ModelAnimator: {fileID: 496681170}
-  SteamParticles: {fileID: 0}
+  SteamParticles: {fileID: 6387625296551305494}
 --- !u!54 &2931296157369804844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
