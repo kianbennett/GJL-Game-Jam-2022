@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    [SerializeField] private Color OutlineColourOn, OutlineColourOff;
+    [SerializeField] private Outline Outline;
+
     private bool leverOn;
     private Animator anim;
     private bool steamInRange;
@@ -37,21 +40,12 @@ public class Lever : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && IsActivePlayerInRange())
         {
-            if(activePlayer == 0 && springInRange)
-            {
-                PullLever();
-            }
-            if (activePlayer == 1 && steamInRange)
-            {
-                PullLever();
-            }
-            if (activePlayer == 2 && shrinkInRange)
-            {
-                PullLever();
-            }
+            PullLever();
         }
+        Outline.enabled = IsActivePlayerInRange();
+        Outline.OutlineColor = leverOn ? OutlineColourOn : OutlineColourOff;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -88,5 +82,11 @@ public class Lever : MonoBehaviour
                 shrinkInRange = false;
             }
         }
+    }
+    private bool IsActivePlayerInRange()
+    {
+        return (activePlayer == 0 && springInRange)
+            || (activePlayer == 1 && steamInRange)
+            || (activePlayer == 2 && shrinkInRange);
     }
 }

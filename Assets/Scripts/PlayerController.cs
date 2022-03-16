@@ -17,14 +17,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            PreviousCharacter();
-        }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            NextCharacter();
-        }
+        if(Input.GetKeyDown(KeyCode.Alpha1)) SwitchToCharacter(0);
+        if(Input.GetKeyDown(KeyCode.Alpha2)) SwitchToCharacter(1);
+        if(Input.GetKeyDown(KeyCode.Alpha3)) SwitchToCharacter(2);
 
         if(Input.GetKeyDown(KeyCode.F))
         {
@@ -34,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private void SwitchToCharacter(int Character)
     {
+        if(CameraController.Instance.IsInCutscene()) return;
+
         Characters[ActiveCharacter].SetAsActiveController(false);
         ActiveCharacter = Character;
         Characters[ActiveCharacter].SetAsActiveController(true);
