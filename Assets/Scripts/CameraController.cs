@@ -5,11 +5,13 @@ using UnityEngine.Rendering;
 public class CameraController : Singleton<CameraController>
 {
     [SerializeField] private Transform Target;
+    [SerializeField] private float SmoothTime, MaxSpeed;
     [SerializeField] private Volume PostProcessVolume;
 
     public Camera MainCamera { get; private set; }
 
     private Coroutine CameraShakeCoroutine;
+    private bool SmoothToTarget;
 
     protected override void Awake()
     {
@@ -21,10 +23,29 @@ public class CameraController : Singleton<CameraController>
     {
         if(Target)
         {
-            Vector3 TargetPos = Target.position;
-            TargetPos.y = 0;
-            transform.position = TargetPos;
+            float DistToTarget = Vector3.Distance(transform.position, Target.position);
+
+            if(SmoothToTarget)
+            {
+                Vector3 vel = Vector3.zero;
+                transform.position = Vector3.SmoothDamp(transform.position, Target.position, ref vel, SmoothTime, MaxSpeed);
+            }
+            else
+            {
+                transform.position = Target.position;
+            }
+            
+            if(DistToTarget < 0.2f)
+            {
+                SmoothToTarget = false;
+            }
         }
+    }
+
+    public void SetTarget(Transform Target)
+    {
+        this.Target = Target;
+        SmoothToTarget = true;
     }
 
     public void ShakeCamera(float Distance, float Interval, float Duration)
