@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601592300868688981}
-  m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 5.99, z: -4.38}
+  m_LocalRotation: {x: 0.50022674, y: 0, z: 0, w: 0.8658945}
+  m_LocalPosition: {x: 0, y: 12.3, z: -6.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 601592301626776318}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.03, y: 0, z: 0}
 --- !u!20 &601592300868688987
 Camera:
   m_ObjectHideFlags: 0
@@ -43,8 +43,8 @@ Camera:
   m_GameObject: {fileID: 601592300868688981}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -164,5 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  CameraContainer: {fileID: 0}
+  SmoothTime: 0.02
+  MaxSpeed: 50
   PostProcessVolume: {fileID: 0}

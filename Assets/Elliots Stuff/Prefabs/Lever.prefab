@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2412385849305719575}
   - component: {fileID: 2412385849305719574}
   - component: {fileID: 7682482551803555853}
+  - component: {fileID: 2085408350}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   - {fileID: 2412385851137305595}
   - {fileID: 2412385849896059371}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2412385849305719575
 MonoBehaviour:
@@ -81,6 +82,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+--- !u!135 &2085408350
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412385849305719572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.21
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &2412385849896059370
 GameObject:
   m_ObjectHideFlags: 0
