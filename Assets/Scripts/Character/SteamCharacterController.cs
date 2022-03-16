@@ -5,6 +5,7 @@ using UnityEngine;
 public class SteamCharacterController : CharacterController
 {
     public ParticleSystem SteamParticles;
+    public GameObject SteamCollider;
 
     private bool IsSteaming;
 
@@ -17,6 +18,7 @@ public class SteamCharacterController : CharacterController
     {
         base.PerformAction();
 
+        SteamCollider.SetActive(!SteamCollider.activeSelf);
         IsSteaming = !IsSteaming;
         ModelAnimator.SetTrigger(IsSteaming ? "SteamInto" : "SteamExit");
         if(!IsSteaming) SteamParticles.Stop();
