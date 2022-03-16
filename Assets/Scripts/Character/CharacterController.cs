@@ -8,37 +8,61 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float TurnSpeed;
 
     [Header("Appearance")]
-    [SerializeField] private Transform ModelTransform;
+    [SerializeField] protected Transform ModelTransform;
+    [SerializeField] protected Animator ModelAnimator;
     
-    private Rigidbody Rigidbody;
+    private bool IsActive;
+    protected Rigidbody Rigidbody;
     private Vector3 Movement;
+    private Quaternion TargetModelRotation;
+    protected bool CanMove;
 
-    void Awake()
+    protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
+        TargetModelRotation = Quaternion.identity;
+        CanMove = true;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if(!Rigidbody) return;
 
-        Vector2 MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if(MoveInput.magnitude > 1) MoveInput.Normalize();
+        Vector2 MoveInput = Vector2.zero;
 
-        Movement = CameraController.Instance.transform.rotation * new Vector3(MoveInput.x, 0, MoveInput.y);
-
-        Vector3 Velocity = Vector3.zero;
-
-        if(Movement != Vector3.zero)
+        if(IsActive && CanMove)
         {
-            Quaternion TargetModelRotation = Quaternion.LookRotation(Movement);
-            ModelTransform.rotation = Quaternion.Lerp(ModelTransform.rotation, TargetModelRotation, Time.deltaTime * TurnSpeed);
-            // ModelTransform.rotation = Quaternion.RotateTowards(ModelTransform.rotation, TargetModelRotation, Time.deltaTime * TurnSpeed);
-            float Angle = Quaternion.Angle(ModelTransform.rotation, Quaternion.LookRotation(Movement));
-
-            Velocity = ModelTransform.forward * MoveSpeed;
+            MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if(MoveInput.magnitude > 1) MoveInput.Normalize();
         }
 
+        if(MoveInput != Vector2.zero)
+        {
+            Movement = CameraController.Instance.transform.rotation * new Vector3(MoveInput.x, 0, MoveInput.y);
+            TargetModelRotation = Quaternion.LookRotation(Movement);
+
+            ModelTransform.rotation = Quaternion.Lerp(ModelTransform.rotation, TargetModelRotation, Time.deltaTime * TurnSpeed);
+            // ModelTransform.rotation = Quaternion.RotateTowards(ModelTransform.rotation, TargetModelRotation, Time.deltaTime * TurnSpeed);
+            float Angle = Quaternion.Angle(ModelTransform.rotation, TargetModelRotation);
+        }
+
+        Vector3 Velocity = MoveInput != Vector2.zero ? ModelTransform.forward * MoveSpeed : Vector3.zero;
+        Velocity.y = Rigidbody.velocity.y;
         Rigidbody.velocity = Velocity;
+
+        ModelAnimator.speed = MoveInput != Vector2.zero ? 2f : 1f;
+    }
+
+    public void SetAsActiveController(bool Active)
+    {
+        IsActive = Active;
+    }
+
+    public virtual void PerformAction()
+    {
+    }
+
+    public virtual void Interact()
+    {
     }
 }
