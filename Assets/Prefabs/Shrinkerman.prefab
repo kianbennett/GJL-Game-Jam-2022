@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  TurnSpeed: 4
+  TurnSpeed: 8
   ModelTransform: {fileID: 8718482553322443392}
   ModelAnimator: {fileID: 6999528073335191674}
   ColliderBig: {fileID: 6999528074001004769}
