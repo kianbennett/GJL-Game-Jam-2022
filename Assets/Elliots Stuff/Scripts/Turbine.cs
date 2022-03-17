@@ -16,7 +16,7 @@ public class Turbine : MonoBehaviour
         hasSteam = false;
         anim = GetComponent<Animator>();
         isAnimPlaying = false;
-        
+        steamCol = steamCol = GameObject.Find("tempCol");
     }
 
     // Update is called once per frame

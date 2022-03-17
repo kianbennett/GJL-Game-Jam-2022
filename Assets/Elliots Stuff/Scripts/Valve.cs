@@ -10,8 +10,6 @@ public class Valve : MonoBehaviour
     private bool springInRange;
     private bool shrinkInRange;
     private int activePlayer;
-    public GameObject steam;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -26,7 +24,6 @@ public class Valve : MonoBehaviour
             //valveOn = false;
             //anim.SetTrigger("valveOff");
             //this.GetComponent<TriggerObject>().active = false;
-            //steam.SetActive(true);
         }
         else
         {
@@ -34,7 +31,6 @@ public class Valve : MonoBehaviour
             valveOn = true;
             anim.SetTrigger("valveOn");
             this.GetComponent<TriggerObject>().active = true;
-            steam.SetActive(false);
         }
     }
     private void Update()

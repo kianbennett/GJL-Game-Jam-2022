@@ -48,11 +48,13 @@ public class Level : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, OriginalLevelHeight, transform.position.z), Time.deltaTime * RevealSpeed);
             if(Mathf.Approximately(transform.position.y, OriginalLevelHeight))
             {
+                Debug.Log("HI");
                 break;
             }
             yield return null;
         }
-
+        
         LevelOverlayCollider.enabled = false;
+        
     }
 }
