@@ -6,7 +6,7 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private MeshRenderer LevelOverlay;
     [SerializeField] private Collider LevelOverlayCollider;
-    [SerializeField] private float RevealSpeed , RevealOverlaySpeed = 0.6f;
+    [SerializeField] private float RevealSpeed = 1.0f, RevealOverlaySpeed = 0.6f;
     [SerializeField] private float RevealHeightOffset = 1.7f;
     
     private bool HideOverlay;
