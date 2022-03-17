@@ -6,8 +6,8 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private MeshRenderer LevelOverlay;
     [SerializeField] private Collider LevelOverlayCollider;
-    [SerializeField] private float RevealSpeed, RevealOverlaySpeed;
-    [SerializeField] private float RevealHeightOffset;
+    [SerializeField] private float RevealSpeed , RevealOverlaySpeed = 0.6f;
+    [SerializeField] private float RevealHeightOffset = 1.7f;
     
     private bool HideOverlay;
     private bool IsActive;
@@ -15,11 +15,6 @@ public class Level : MonoBehaviour
     void Update()
     {
         SetOverlayAlpha(Mathf.MoveTowards(LevelOverlay.material.color.a, HideOverlay ? 0 : 1, Time.deltaTime * (1f / RevealOverlaySpeed)));
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ShowLevel();
-        }
     }
 
     private void SetOverlayAlpha(float Alpha)
@@ -29,15 +24,15 @@ public class Level : MonoBehaviour
         LevelOverlay.material = Mat;
     }
 
-    public void ShowLevel()
+    public void ShowLevel(float Delay = 0f)
     {
         if(!IsActive)
         {
-            StartCoroutine(ShowLevelIEnum());    
+            StartCoroutine(ShowLevelIEnum(Delay));    
         }
     }
 
-    private IEnumerator ShowLevelIEnum()
+    private IEnumerator ShowLevelIEnum(float Delay = 0f)
     {
         IsActive = true;
         HideOverlay = true;
@@ -45,6 +40,8 @@ public class Level : MonoBehaviour
         float OriginalLevelHeight = transform.position.y;
         transform.position -= Vector3.up * RevealHeightOffset;
         LevelOverlayCollider.enabled = true;
+
+        yield return new WaitForSeconds(Delay);
 
         while(true)
         {

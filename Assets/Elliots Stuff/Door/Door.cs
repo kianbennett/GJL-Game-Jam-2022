@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     public bool showCutscene = true;
     public float cutsceneDelay = 0.7f;
     public float cutsceneDuration = 1.2f;
+    public Level LevelToReveal;
 
     private bool isOpen;
     private Animator anim;
@@ -31,6 +32,7 @@ public class Door : MonoBehaviour
            {
                anim.SetTrigger("doorOpen");
            }
+           if(LevelToReveal) LevelToReveal.ShowLevel(0.75f);
            isOpen = true;
        }
        if (trigger.active == false && isOpen == true) //Close Door
