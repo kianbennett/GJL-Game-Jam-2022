@@ -67,6 +67,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 0}
+  showCutscene: 1
+  cutsceneDelay: 0.7
+  cutsceneDuration: 1.2
 --- !u!1 &1468817380107365031
 GameObject:
   m_ObjectHideFlags: 0

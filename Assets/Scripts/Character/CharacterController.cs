@@ -30,7 +30,7 @@ public class CharacterController : MonoBehaviour
 
         Vector2 MoveInput = Vector2.zero;
 
-        if(IsActive && CanMove)
+        if(IsActive && CanMove && !CameraController.Instance.IsInCutscene())
         {
             MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if(MoveInput.magnitude > 1) MoveInput.Normalize();
@@ -46,7 +46,7 @@ public class CharacterController : MonoBehaviour
             float Angle = Quaternion.Angle(ModelTransform.rotation, TargetModelRotation);
         }
 
-        Vector3 Velocity = MoveInput != Vector2.zero ? ModelTransform.forward * MoveSpeed : Vector3.zero;
+        Vector3 Velocity = MoveInput != Vector2.zero ? Movement * MoveSpeed : Vector3.zero;
         Velocity.y = Rigidbody.velocity.y;
         Rigidbody.velocity = Velocity;
 

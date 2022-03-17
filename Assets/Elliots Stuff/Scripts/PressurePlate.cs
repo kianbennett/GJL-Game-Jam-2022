@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer OutlineMesh;
+    [SerializeField] private Material OutlineMaterialActive, OutlineMaterialInactive;
     public bool active;
     private int playersOn;
     private void Start()
@@ -20,6 +22,7 @@ public class PressurePlate : MonoBehaviour
         {
             active = false;
         }
+        OutlineMesh.material = active ? OutlineMaterialActive : OutlineMaterialInactive;
     }
     private void OnTriggerEnter(Collider other)
     {
