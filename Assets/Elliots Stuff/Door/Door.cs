@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Door : MonoBehaviour
 {
+    public Door[] ConnectedDoors;
     public TriggerObject trigger;
     public bool showCutscene = true;
     public float cutsceneDelay = 0.7f;
@@ -25,28 +27,49 @@ public class Door : MonoBehaviour
        {
            if(showCutscene && !hasPlayedCutscene)
            {
-               CameraController.Instance.StartCutscene(transform.position, cutsceneDelay, cutsceneDuration, delegate { anim.SetTrigger("doorOpen"); });
+                CameraController.Instance.StartCutscene(cutsceneDelay, cutsceneDuration, delegate { 
+                    foreach(Door Door in GetAllDoors()) Door.Open();
+                }, GetAllDoors().Select(o => o.transform.position).ToArray());
                hasPlayedCutscene = true;
            }
            else
            {
-               anim.SetTrigger("doorOpen");
+               foreach(Door Door in GetAllDoors()) Door.Open();
            }
            if(LevelToReveal) LevelToReveal.ShowLevel(0.75f);
-           isOpen = true;
        }
        if (trigger.active == false && isOpen == true) //Close Door
        {
            if(showCutscene && !hasPlayedCutscene)
            {
-               CameraController.Instance.StartCutscene(transform.position, cutsceneDelay, cutsceneDuration, delegate { anim.SetTrigger("doorClose"); });
+               CameraController.Instance.StartCutscene(cutsceneDelay, cutsceneDuration, delegate { 
+                    foreach(Door Door in GetAllDoors()) Door.Close();
+                }, GetAllDoors().Select(o => o.transform.position).ToArray());
                hasPlayedCutscene = true;
            }
            else
            {
-               anim.SetTrigger("doorClose");
+               foreach(Door Door in GetAllDoors()) Door.Close();
            }
-           isOpen = false;
        }
+    }
+    public void Open() 
+    {
+        if(isOpen) return;
+        anim.SetTrigger("doorOpen");
+        isOpen = true;
+    }
+    public void Close()
+    {
+        if(!isOpen) return;
+        anim.SetTrigger("doorClose");
+        isOpen = false;
+    }
+    private Door[] GetAllDoors()
+    {
+        List<Door> Doors = new List<Door>();
+        Doors.Add(this);
+        Doors.AddRange(ConnectedDoors);
+        return Doors.ToArray();
     }
 }
