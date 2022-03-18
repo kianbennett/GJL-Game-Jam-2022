@@ -6,11 +6,16 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private MeshRenderer LevelOverlay;
     [SerializeField] private Collider LevelOverlayCollider;
-    [SerializeField] private float RevealSpeed = 1.0f, RevealOverlaySpeed = 0.6f;
+    [SerializeField] private float RevealSpeed = 4.0f, RevealOverlaySpeed = 0.6f;
     [SerializeField] private float RevealHeightOffset = 1.7f;
     
     private bool HideOverlay;
     private bool IsActive;
+
+    void Awake()
+    {
+        SetOverlayAlpha(1);
+    }
 
     void Update()
     {
@@ -19,6 +24,7 @@ public class Level : MonoBehaviour
 
     private void SetOverlayAlpha(float Alpha)
     {
+        if(!LevelOverlay) return;
         Material Mat = LevelOverlay.material;
         Mat.color = new Color(Mat.color.r, Mat.color.g, Mat.color.b, Alpha);
         LevelOverlay.material = Mat;
@@ -35,26 +41,26 @@ public class Level : MonoBehaviour
     private IEnumerator ShowLevelIEnum(float Delay = 0f)
     {
         IsActive = true;
+
+        yield return new WaitForSeconds(Delay);
+
         HideOverlay = true;
 
         float OriginalLevelHeight = transform.position.y;
         transform.position -= Vector3.up * RevealHeightOffset;
-        LevelOverlayCollider.enabled = true;
-
-        yield return new WaitForSeconds(Delay);
+        if(LevelOverlayCollider) LevelOverlayCollider.enabled = true;
 
         while(true)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, OriginalLevelHeight, transform.position.z), Time.deltaTime * RevealSpeed);
-            if(Mathf.Approximately(transform.position.y, OriginalLevelHeight))
+            if(Mathf.Abs(transform.position.y - OriginalLevelHeight) < 0.05f)
             {
-                Debug.Log("HI");
                 break;
             }
             yield return null;
         }
-        
-        LevelOverlayCollider.enabled = false;
-        
+
+        if(LevelOverlayCollider) LevelOverlayCollider.enabled = false;
+        transform.position = new Vector3(transform.position.x, OriginalLevelHeight, transform.position.z);
     }
 }
