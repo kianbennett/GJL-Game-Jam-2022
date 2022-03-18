@@ -28,11 +28,11 @@ Transform:
   m_GameObject: {fileID: 301914919611301196}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -18.01, y: 2.072, z: 80.54}
-  m_LocalScale: {x: 0.4318458, y: 0.4318461, z: 0.25975826}
+  m_LocalScale: {x: 0.4318458, y: 0.43184626, z: 0.25975832}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &234015122616174261
 ParticleSystem:
@@ -4827,3 +4827,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50eff6148ca64724cbacf48ba7cb15df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  valve: {fileID: 0}
+  turbine: {fileID: 0}
