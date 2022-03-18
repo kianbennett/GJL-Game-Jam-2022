@@ -166,4 +166,6 @@ MonoBehaviour:
   Target: {fileID: 0}
   SmoothTime: 0.02
   MaxSpeed: 50
-  PostProcessVolume: {fileID: 0}
+  ZoomSpeed: 50
+  MinCameraDist: 5
+  MaxCameraDist: 15
