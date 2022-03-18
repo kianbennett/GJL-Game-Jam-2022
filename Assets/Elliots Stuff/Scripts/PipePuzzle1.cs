@@ -23,7 +23,7 @@ public class PipePuzzle1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(valve1.active == true && cornerPipe.active == true && tPipe.active == true && valve2.active == true && turbine == true)
+        if(valve1.active == true && cornerPipe.active == true && tPipe.active == true && valve2.active == true && turbine.active == true)
         {
             thisTrigger.active = true;
         }
