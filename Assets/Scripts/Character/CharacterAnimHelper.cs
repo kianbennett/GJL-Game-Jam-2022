@@ -9,6 +9,7 @@ public class CharacterAnimHelper : MonoBehaviour
     public void ShootSteam()
     {
         (Owner as SteamCharacterController).SteamParticles.Play();
+        AudioManager.Instance.SfxSteam.PlayAsSFX(Random.Range(0.9f, 1.1f));
     }
 
     public void Jump()
