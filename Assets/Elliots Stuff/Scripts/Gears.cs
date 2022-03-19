@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gears : MonoBehaviour
+public class Gears : TriggerReceiver
 {
     private Animator anim;
-    public TriggerObject trigger;
+    // public TriggerObject trigger;
     private bool gearsOn;
     // Start is called before the first frame update
     void Start()
@@ -14,15 +14,31 @@ public class Gears : MonoBehaviour
         gearsOn = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     if(trigger.active == true && gearsOn == false)
+    //     {
+    //         gearsOn = true;
+    //         anim.SetTrigger("gearsOn");
+    //     }
+    //     if (trigger.active == false && gearsOn == true)
+    //     {
+    //         gearsOn = false;
+    //         anim.SetTrigger("gearsOff");
+    //     }
+    // }
+    public override void Activate()
     {
-        if(trigger.active == true && gearsOn == false)
+        if(gearsOn == false)
         {
             gearsOn = true;
             anim.SetTrigger("gearsOn");
         }
-        if (trigger.active == false && gearsOn == true)
+    }
+    public override void Deactivate()
+    {
+        if(gearsOn == true)
         {
             gearsOn = false;
             anim.SetTrigger("gearsOff");

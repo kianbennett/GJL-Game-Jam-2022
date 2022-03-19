@@ -109,6 +109,11 @@ public class CameraController : Singleton<CameraController>
 
     public void StartCutscene(float InitialDelay, float Duration, UnityAction Callback, params Vector3[] Positions)
     {
+        if(Positions.Length == 0) 
+        {
+            Debug.LogWarning("Trying to show cutscene with no positions");
+            return;
+        }
         if(CutsceneCoroutine != null) StopCoroutine(CutsceneCoroutine);
         CutsceneCoroutine = StartCoroutine(StartCutsceneIEnum(InitialDelay, Duration, Callback, Positions));
     }
