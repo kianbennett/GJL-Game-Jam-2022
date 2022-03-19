@@ -15,8 +15,8 @@ public class Door : TriggerReceiver
         anim = GetComponent<Animator>();
         isOpen = false;
     }
-    // private void Update()
-    // {
+    private void Update()
+    {
     //    if (trigger.active == true && isOpen == false) //Open Door
     //    {
     //        if(showCutscene && !hasPlayedCutscene)
@@ -46,7 +46,7 @@ public class Door : TriggerReceiver
     //            foreach(Door Door in GetAllDoors()) Door.Close();
     //        }
     //    }
-    // }
+    }
     public override void Activate()
     {
         if(isOpen) return;

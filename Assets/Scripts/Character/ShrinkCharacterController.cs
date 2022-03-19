@@ -28,5 +28,7 @@ public class ShrinkCharacterController : CharacterController
         ModelAnimator.SetTrigger(IsSmall ? "ShrinkInto" : "ShrinkExit");
         ColliderBig.enabled = !IsSmall;
         ColliderSmall.enabled = IsSmall;
+        if(IsSmall) AudioManager.Instance.SfxShrink.PlayAsSFX(Random.Range(0.9f, 1.1f));
+            else AudioManager.Instance.SfxGrow.PlayAsSFX(Random.Range(0.9f, 1.1f));
     }
 }

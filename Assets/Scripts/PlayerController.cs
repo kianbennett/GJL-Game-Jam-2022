@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        SwitchToCharacter(1);
+        SwitchToCharacter(1, false);
 
         Application.targetFrameRate = 60;
+        AudioManager.Instance.MusicLevel.PlayAsMusic();
     }
 
     void Update()
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SwitchToCharacter(int Character)
+    private void SwitchToCharacter(int Character, bool PlaySFX = true)
     {
         if(CameraController.Instance.IsInCutscene()) return;
 
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
         ActiveCharacter = Character;
         Characters[ActiveCharacter].SetAsActiveController(true);
         CameraController.Instance.SetTarget(Characters[ActiveCharacter].transform);
+
+        if(PlaySFX) AudioManager.Instance.SfxCharacterChange.PlayAsSFX(Random.Range(0.5f, 0.6f));
     }
 
     private void NextCharacter()

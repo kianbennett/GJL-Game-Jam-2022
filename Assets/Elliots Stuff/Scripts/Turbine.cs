@@ -9,6 +9,7 @@ public class Turbine : MonoBehaviour
     private Animator anim;
     private bool isAnimPlaying;
     public GameObject steamCol;
+    public AudioSource AudioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,8 @@ public class Turbine : MonoBehaviour
             anim.SetTrigger("turbineOff");
             isAnimPlaying = false;
         }
+
+        AudioSource.mute = !hasSteam;
     }
     private void OnTriggerEnter(Collider other)
     {
