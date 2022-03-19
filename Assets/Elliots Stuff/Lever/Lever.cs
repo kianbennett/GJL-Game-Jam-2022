@@ -18,7 +18,7 @@ public class Lever : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         leverOn = false;
-        this.GetComponent<TriggerObject>().active = false;
+        // this.GetComponent<TriggerObject>().active = false;
     }
     public void PullLever()
     {

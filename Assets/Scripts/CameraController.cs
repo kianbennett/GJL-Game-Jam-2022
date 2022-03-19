@@ -107,20 +107,32 @@ public class CameraController : Singleton<CameraController>
         CameraDist = Mathf.Clamp(CameraDist - delta * Time.deltaTime * ZoomSpeed, MinCameraDist, MaxCameraDist);
     }
 
-    public void StartCutscene(Vector3 Position, float InitialDelay, float Duration, UnityAction Callback)
+    public void StartCutscene(float InitialDelay, float Duration, UnityAction Callback, params Vector3[] Positions)
     {
+        if(Positions.Length == 0) 
+        {
+            Debug.LogWarning("Trying to show cutscene with no positions");
+            return;
+        }
         if(CutsceneCoroutine != null) StopCoroutine(CutsceneCoroutine);
-        CutsceneCoroutine = StartCoroutine(StartCutsceneIEnum(Position, InitialDelay, Duration, Callback));
+        CutsceneCoroutine = StartCoroutine(StartCutsceneIEnum(InitialDelay, Duration, Callback, Positions));
     }
 
-    private IEnumerator StartCutsceneIEnum(Vector3 Position, float InitialDelay, float Duration, UnityAction Callback)
+    private IEnumerator StartCutsceneIEnum(float InitialDelay, float Duration, UnityAction Callback, Vector3[] Positions)
     {
         InCutscene = true;
 
         yield return new WaitForSeconds(InitialDelay);
 
         Transform PrevTarget = Target;
-        SetTarget(Position);
+
+        Vector3 AveragePosition = Vector3.zero;
+        foreach(Vector3 Position in Positions)
+        {
+            AveragePosition += Position;
+        }
+        AveragePosition /= Positions.Length;
+        SetTarget(AveragePosition);
 
         while(SmoothToTarget) yield return null;
 
