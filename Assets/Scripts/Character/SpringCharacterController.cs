@@ -52,7 +52,7 @@ public class SpringCharacterController : CharacterController
     public void Jump()
     {
         Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, JumpSpeed, Rigidbody.velocity.z);
-        AudioManager.Instance.SfxJump.PlayAsSFX(Random.Range(1.9f, 2.1f));
+        AudioManager.Instance.SfxJump.PlayAsSFX(Random.Range(1.6f, 1.8f));
     }
 
     void OnCollisionEnter(Collision other) 
