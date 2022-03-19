@@ -6,8 +6,19 @@ public class ShrinkCharacterController : CharacterController
 {
     [SerializeField] private Collider ColliderBig;
     [SerializeField] private Collider ColliderSmall;
+    [SerializeField] private Transform[] Wheels;
 
     private bool IsSmall;
+
+    protected override void Update()
+    {
+        base.Update();
+
+        foreach(Transform Wheel in Wheels)
+        {
+            Wheel.Rotate(Vector3.up, Time.deltaTime * 80 * Rigidbody.velocity.magnitude, Space.Self);
+        }
+    }
 
     public override void PerformAction()
     {

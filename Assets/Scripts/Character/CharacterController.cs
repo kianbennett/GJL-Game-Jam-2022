@@ -50,7 +50,15 @@ public class CharacterController : MonoBehaviour
         Velocity.y = Rigidbody.velocity.y;
         Rigidbody.velocity = Velocity;
 
-        ModelAnimator.speed = MoveInput != Vector2.zero ? 2f : 1f;
+        if(ModelAnimator.GetCurrentAnimatorStateInfo(0).IsName("AnimIdle"))
+        {
+            ModelAnimator.speed = MoveInput != Vector2.zero ? 2f : 1f;
+        }
+        else
+        {
+            ModelAnimator.speed = 1;
+        }
+        
     }
 
     public void SetAsActiveController(bool Active)
