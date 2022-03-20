@@ -12,6 +12,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Help()
     {
+        gameObject.SetActive(false);
+        MenuManager.Instance.HelpMenu.Open(true);
     }
 
     public void Quit()

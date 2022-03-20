@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TextMeshProUGUI TextReady;
+    private bool HasBegun;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        TextReady.color = new Color(1, 1, 1, 0.3f + 0.2f * Mathf.Sin(Time.time * 4f));
+
+        if(Input.anyKeyDown)
+        {
+            if(!HasBegun)
+            {
+                HasBegun = true;
+                gameObject.SetActive(false);
+                PlayerController.Instance.StartGame();
+            }
+        }
     }
 }

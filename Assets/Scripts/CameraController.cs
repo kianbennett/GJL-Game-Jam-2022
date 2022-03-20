@@ -5,10 +5,12 @@ using UnityEngine.Rendering;
 
 public class CameraController : Singleton<CameraController>
 {
-    [SerializeField] private float SmoothTime, MaxSpeed;
+    public float SmoothTime, MaxSpeed;
     [SerializeField] private float ZoomSpeed;
-
     [SerializeField] private float MinCameraDist, MaxCameraDist;
+    [SerializeField] private Volume PostProcessVolume;
+    [SerializeField] private Vector3 DefaultCameraRotation;
+    [SerializeField] private Vector3 DefaultCameraPosition;
 
     public Camera MainCamera { get; private set; }
 
@@ -21,6 +23,8 @@ public class CameraController : Singleton<CameraController>
     private Vector3 TargetToCameraDir;
     private float CameraDist;
     private bool InCutscene;
+    private Vector3? OverrideLocalCameraPos;
+    private Vector3? OverrideLocalCameraRot;
 
     private Coroutine CutsceneCoroutine;
 
@@ -28,8 +32,8 @@ public class CameraController : Singleton<CameraController>
     {
         base.Awake();
         MainCamera = Camera.main;
-        TargetToCameraDir = MainCamera.transform.localPosition.normalized;
-        CameraDist = MainCamera.transform.localPosition.magnitude;
+        TargetToCameraDir = DefaultCameraPosition.normalized;
+        CameraDist = DefaultCameraPosition.magnitude;
     }
 
     void LateUpdate()
@@ -58,8 +62,25 @@ public class CameraController : Singleton<CameraController>
                 Zoom(Input.mouseScrollDelta.y);
             }
 
-            MainCamera.transform.localPosition = 
-                Vector3.Lerp(MainCamera.transform.localPosition, TargetToCameraDir * CameraDist, Time.deltaTime * 5);
+            if(OverrideLocalCameraPos.HasValue)
+            {
+                MainCamera.transform.localPosition = OverrideLocalCameraPos.Value;
+            } 
+            else
+            {
+                MainCamera.transform.localPosition = 
+                    Vector3.Lerp(MainCamera.transform.localPosition, TargetToCameraDir * CameraDist, Time.deltaTime * 5);
+            }
+
+            if(OverrideLocalCameraRot.HasValue)
+            {
+                MainCamera.transform.localRotation = Quaternion.Euler(OverrideLocalCameraRot.Value);
+            }
+            else
+            {
+                MainCamera.transform.localRotation = 
+                    Quaternion.RotateTowards(MainCamera.transform.localRotation, Quaternion.Euler(DefaultCameraRotation), Time.deltaTime * 60f);
+            }
         }
     }
 
@@ -107,6 +128,15 @@ public class CameraController : Singleton<CameraController>
         CameraDist = Mathf.Clamp(CameraDist - delta * Time.deltaTime * ZoomSpeed, MinCameraDist, MaxCameraDist);
     }
 
+    public void SetPostProcessingEffectEnabled<T>(bool enabled) where T : VolumeComponent 
+    {
+        PostProcessVolume.profile.TryGet<T>(out T Component);
+        if(Component != null) 
+        {
+            Component.active = enabled;
+        }
+    }
+
     public void StartCutscene(float InitialDelay, float Duration, UnityAction Callback, params Vector3[] Positions)
     {
         if(Positions.Length == 0) 
@@ -142,6 +172,16 @@ public class CameraController : Singleton<CameraController>
 
         SetTarget(PrevTarget);
         InCutscene = false;
+    }
+
+    public void SetOverrideLocalCameraPos(Vector3? OverrideLocalCameraPos)
+    {
+        this.OverrideLocalCameraPos = OverrideLocalCameraPos;
+    }
+
+    public void SetOverrideLocalCameraRot(Vector3? OverrideLocalCameraRot)
+    {
+        this.OverrideLocalCameraRot = OverrideLocalCameraRot;
     }
 
     public bool IsInCutscene()

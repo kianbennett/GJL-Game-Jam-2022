@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6841363155351019149
 MonoBehaviour:
@@ -52,7 +52,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 54532bbed8b5dbb48b23674b498310e3, type: 3}
     volume: 0.2
   MusicMainMenu:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f4ba845c33fdb3444af8de8548ee22f1, type: 3}
     volume: 0.2
   SfxButtonClick:
     clip: {fileID: 8300000, guid: e6f1287ea2663274a9a3ff10524d1eaa, type: 3}

@@ -34,7 +34,7 @@ public class CharacterController : MonoBehaviour
 
         Vector2 MoveInput = Vector2.zero;
 
-        if(IsActive && CanMove && !CameraController.Instance.IsInCutscene())
+        if(IsActive && PlayerController.Instance.HasStarted && CanMove && !CameraController.Instance.IsInCutscene())
         {
             MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if(MoveInput.magnitude > 1) MoveInput.Normalize();

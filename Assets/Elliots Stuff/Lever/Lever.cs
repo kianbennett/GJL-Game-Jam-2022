@@ -41,7 +41,7 @@ public class Lever : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if(Input.GetKeyDown(KeyCode.E) && IsActivePlayerInRange())
+        if(PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E) && IsActivePlayerInRange())
         {
             PullLever();
         }
