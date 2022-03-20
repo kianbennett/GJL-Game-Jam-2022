@@ -10,6 +10,10 @@ public class CharacterController : MonoBehaviour
     [Header("Appearance")]
     [SerializeField] protected Transform ModelTransform;
     [SerializeField] protected Animator ModelAnimator;
+
+    [Header("Audio")]
+    [SerializeField] protected AudioSource AudioEngineIdle;
+    [SerializeField] protected AudioSource AudioEngineRunning;
     
     private bool IsActive;
     protected Rigidbody Rigidbody;
@@ -58,7 +62,17 @@ public class CharacterController : MonoBehaviour
         {
             ModelAnimator.speed = 1;
         }
+
+        AudioEngineRunning.mute = !IsActive || MoveInput == Vector2.zero;
         
+        // if(IsActive && MoveInput != Vector2.zero && !AudioEngineRunning.isPlaying)
+        // {
+        //     AudioEngineRunning.mute =
+        // }
+        // else if(AudioEngineRunning.isPlaying)
+        // {
+        //     AudioEngineRunning.Stop();
+        // }
     }
 
     public void SetAsActiveController(bool Active)

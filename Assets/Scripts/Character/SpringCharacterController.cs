@@ -6,6 +6,8 @@ public class SpringCharacterController : CharacterController
 {
     [SerializeField] private float JumpSpeed;
     [SerializeField] private float GravityAcceleration;
+    [SerializeField] private Transform Wheel;
+    [SerializeField] private Transform[] Gears;
 
     private bool IsGrounded;
 
@@ -25,6 +27,15 @@ public class SpringCharacterController : CharacterController
             Velocity.y += GravityAcceleration * Time.deltaTime;
         }
         Rigidbody.velocity = Velocity;
+
+        // For the wheel use the horizontal velocity only
+        Velocity.y = 0;
+        Wheel.Rotate(Vector3.up, Time.deltaTime * -75 * Velocity.magnitude, Space.Self);
+
+        for(int i = 0; i < Gears.Length; i++)
+        {
+            Gears[i].Rotate(Vector3.right, Time.deltaTime * 160 * (i == 0 ? 1 : -1), Space.Self);
+        }
     }
 
     public override void PerformAction()
@@ -41,6 +52,7 @@ public class SpringCharacterController : CharacterController
     public void Jump()
     {
         Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, JumpSpeed, Rigidbody.velocity.z);
+        AudioManager.Instance.SfxJump.PlayAsSFX(Random.Range(1.9f, 2.1f));
     }
 
     void OnCollisionEnter(Collision other) 

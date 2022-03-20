@@ -36,6 +36,7 @@ public class Lever : MonoBehaviour
             anim.SetTrigger("leverOn");
             this.GetComponent<TriggerObject>().active = true;
         }
+        AudioManager.Instance.SfxLever.PlayAsSFX(Random.Range(0.6f, 0.8f));
     }
     private void Update()
     {

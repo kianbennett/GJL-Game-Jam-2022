@@ -50,6 +50,8 @@ public class Level : MonoBehaviour
         transform.position -= Vector3.up * RevealHeightOffset;
         if(LevelOverlayCollider) LevelOverlayCollider.enabled = true;
 
+        AudioManager.Instance.SfxShowLevel.PlayAsSFX(Random.Range(0.6f, 0.7f));
+
         while(true)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, OriginalLevelHeight, transform.position.z), Time.deltaTime * RevealSpeed);
