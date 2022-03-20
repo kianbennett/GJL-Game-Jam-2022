@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Elevator : TriggerReceiver
 {
@@ -8,6 +9,7 @@ public class Elevator : TriggerReceiver
     private Animator anim;
     private bool elevatorStarted;
     private bool elevatorOn;
+    private bool elevatorOpen;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,4 +59,21 @@ public class Elevator : TriggerReceiver
             elevatorOn = false;
         }
     }
+    //public void Open()
+    //{
+    //    if (elevatorOpen == false)
+    //    {
+    //        elevatorOpen = true;
+    //        anim.SetTrigger("open");
+    //    }
+    //}
+    //public void Close()
+    //{
+    //    if (elevatorOpen == true)
+    //    {
+    //        elevatorOpen = false;
+    //        anim.SetTrigger("close");
+    //    }
+    //}
+    
 }

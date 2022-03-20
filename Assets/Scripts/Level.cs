@@ -64,5 +64,13 @@ public class Level : MonoBehaviour
 
         if(LevelOverlayCollider) LevelOverlayCollider.enabled = false;
         transform.position = new Vector3(transform.position.x, OriginalLevelHeight, transform.position.z);
+
+        if(PlayerController.Instance.GetPreviousLevel() != null)
+        {
+            foreach(Light Light in GetComponentsInChildren<Light>(PlayerController.Instance.GetPreviousLevel().gameObject))
+            {
+                Light.enabled = false;
+            }
+        }
     }
 }

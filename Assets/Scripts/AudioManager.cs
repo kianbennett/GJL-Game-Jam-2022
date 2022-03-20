@@ -53,6 +53,7 @@ public class AudioManager : Singleton<AudioManager> {
         {
             float MusicVolume = MusicMuted ? 0 : MusicPlayingVolume;
             SourceMusic.volume = Mathf.MoveTowards(SourceMusic.volume, MusicVolume, Time.deltaTime * 2f);
+            // Debug.Log(SourceMusic.volume + ", " + MusicVolume);
         }
     }
 

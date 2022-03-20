@@ -36,7 +36,7 @@ public class Valve : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E))
         {
             if (activePlayer == 0 && springInRange)
             {
