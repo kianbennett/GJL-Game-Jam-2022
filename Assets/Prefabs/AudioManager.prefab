@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6841363155351019149
 MonoBehaviour:
@@ -50,33 +50,36 @@ MonoBehaviour:
   SourceSFX: {fileID: 6841363155351019147}
   MusicLevel:
     clip: {fileID: 8300000, guid: 54532bbed8b5dbb48b23674b498310e3, type: 3}
-    volume: 0.3
+    volume: 0.2
   MusicMainMenu:
     clip: {fileID: 0}
-    volume: 1
+    volume: 0.2
   SfxButtonClick:
     clip: {fileID: 8300000, guid: e6f1287ea2663274a9a3ff10524d1eaa, type: 3}
-    volume: 0.4
+    volume: 0.3
   SfxCharacterChange:
-    clip: {fileID: 8300000, guid: d6adb4cfb2b883f49839536060e38e14, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 50fbae5940a48a0429124a986596dc7f, type: 3}
+    volume: 0.15
   SfxVictory:
     clip: {fileID: 0}
     volume: 1
   SfxJump:
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: 60be85112742f744f948bdaf73bbb62d, type: 3}
+    volume: 0.1
   SfxSteam:
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: e696b3de935fee941971b15991d21c0f, type: 3}
+    volume: 0.3
   SfxShrink:
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: 7f8c629576ed8274d92db290b04f69b0, type: 3}
+    volume: 0.12
   SfxGrow:
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: b61eac99a0a5d704e9210a2e3f2ff389, type: 3}
+    volume: 0.2
   SfxLever:
     clip: {fileID: 8300000, guid: 09ecbfc289f46aa4a93637c80d721908, type: 3}
+    volume: 0.2
+  SfxShowLevel:
+    clip: {fileID: 8300000, guid: 380c374ae9ded0a4e9de8c9e9fbec81c, type: 3}
     volume: 0.2
 --- !u!82 &6841363155351019146
 AudioSource:
