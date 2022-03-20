@@ -10,6 +10,10 @@ public class CharacterController : MonoBehaviour
     [Header("Appearance")]
     [SerializeField] protected Transform ModelTransform;
     [SerializeField] protected Animator ModelAnimator;
+
+    [Header("Audio")]
+    [SerializeField] protected AudioSource AudioEngineIdle;
+    [SerializeField] protected AudioSource AudioEngineRunning;
     
     private bool IsActive;
     protected Rigidbody Rigidbody;
@@ -30,7 +34,7 @@ public class CharacterController : MonoBehaviour
 
         Vector2 MoveInput = Vector2.zero;
 
-        if(IsActive && CanMove)
+        if(IsActive && CanMove && !CameraController.Instance.IsInCutscene())
         {
             MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if(MoveInput.magnitude > 1) MoveInput.Normalize();
@@ -46,11 +50,29 @@ public class CharacterController : MonoBehaviour
             float Angle = Quaternion.Angle(ModelTransform.rotation, TargetModelRotation);
         }
 
-        Vector3 Velocity = MoveInput != Vector2.zero ? ModelTransform.forward * MoveSpeed : Vector3.zero;
+        Vector3 Velocity = MoveInput != Vector2.zero ? Movement * MoveSpeed : Vector3.zero;
         Velocity.y = Rigidbody.velocity.y;
         Rigidbody.velocity = Velocity;
 
-        ModelAnimator.speed = MoveInput != Vector2.zero ? 2f : 1f;
+        if(ModelAnimator.GetCurrentAnimatorStateInfo(0).IsName("AnimIdle"))
+        {
+            ModelAnimator.speed = MoveInput != Vector2.zero ? 2f : 1f;
+        }
+        else
+        {
+            ModelAnimator.speed = 1;
+        }
+
+        AudioEngineRunning.mute = !IsActive || MoveInput == Vector2.zero;
+        
+        // if(IsActive && MoveInput != Vector2.zero && !AudioEngineRunning.isPlaying)
+        // {
+        //     AudioEngineRunning.mute =
+        // }
+        // else if(AudioEngineRunning.isPlaying)
+        // {
+        //     AudioEngineRunning.Stop();
+        // }
     }
 
     public void SetAsActiveController(bool Active)
