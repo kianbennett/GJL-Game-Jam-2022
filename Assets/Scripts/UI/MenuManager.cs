@@ -7,6 +7,7 @@ public class MenuManager : Singleton<MenuManager>
     public PauseMenu PauseMenu;
     public MainMenu MainMenu;
     public HelpMenu HelpMenu;
+    public VictoryMenu VictoryMenu;
     public CharacterPreview CharacterPreview;
 
     protected override void Awake()
