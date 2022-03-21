@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Valve : MonoBehaviour
 {
+    [SerializeField] private Color OutlineColourOn, OutlineColourOff;
+    [SerializeField] private Outline Outline;
+
     private bool valveOn;
     private Animator anim;
     private bool steamInRange;
@@ -36,21 +39,13 @@ public class Valve : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if (PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E))
+        if (PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E) && IsActivePlayerInRange())
         {
-            if (activePlayer == 0 && springInRange)
-            {
-                TurnValve();
-            }
-            if (activePlayer == 1 && steamInRange)
-            {
-                TurnValve();
-            }
-            if (activePlayer == 2 && shrinkInRange)
-            {
-                TurnValve();
-            }
+            TurnValve();
         }
+
+        Outline.enabled = IsActivePlayerInRange();
+        Outline.OutlineColor = valveOn ? OutlineColourOn : OutlineColourOff;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -87,5 +82,11 @@ public class Valve : MonoBehaviour
                 shrinkInRange = false;
             }
         }
+    }
+    private bool IsActivePlayerInRange()
+    {
+        return (activePlayer == 0 && springInRange)
+            || (activePlayer == 1 && steamInRange)
+            || (activePlayer == 2 && shrinkInRange);
     }
 }

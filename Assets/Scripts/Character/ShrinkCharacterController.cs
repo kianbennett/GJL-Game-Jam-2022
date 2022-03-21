@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShrinkCharacterController : CharacterController
 {
     [SerializeField] private Collider ColliderBig;
-    [SerializeField] private Collider ColliderSmall;
+    [SerializeField] private Collider[] CollidersSmall;
     [SerializeField] private Transform[] Wheels;
 
     private bool IsSmall;
@@ -27,7 +27,7 @@ public class ShrinkCharacterController : CharacterController
         IsSmall = !IsSmall;
         ModelAnimator.SetTrigger(IsSmall ? "ShrinkInto" : "ShrinkExit");
         ColliderBig.enabled = !IsSmall;
-        ColliderSmall.enabled = IsSmall;
+        foreach(Collider Collider in CollidersSmall) Collider.enabled = IsSmall;
         if(IsSmall) AudioManager.Instance.SfxShrink.PlayAsSFX(Random.Range(0.9f, 1.1f));
             else AudioManager.Instance.SfxGrow.PlayAsSFX(Random.Range(0.9f, 1.1f));
     }
