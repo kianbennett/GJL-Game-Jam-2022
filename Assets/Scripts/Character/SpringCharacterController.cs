@@ -10,6 +10,8 @@ public class SpringCharacterController : CharacterController
     [SerializeField] private Transform[] Gears;
 
     private bool IsGrounded;
+    private bool IsJumping;
+    private Coroutine ResetJumpCoroutine;
 
     protected override void Awake()
     {
@@ -42,17 +44,24 @@ public class SpringCharacterController : CharacterController
     {
         base.PerformAction();
 
-        if(IsGrounded)
+        if(!IsJumping)
         {
-            IsGrounded = false;
+            IsJumping = true;
             ModelAnimator.SetTrigger("JumpInto");
+            if(ResetJumpCoroutine != null) StopCoroutine(ResetJumpCoroutine);
+            StartCoroutine(ResetJumpIEnum());
+            Debug.Log("Jump");
         }
     }
 
     public void Jump()
     {
+        if(!IsGrounded) return;
+
+        IsGrounded = false;
         Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, JumpSpeed, Rigidbody.velocity.z);
         AudioManager.Instance.SfxJump.PlayAsSFX(Random.Range(1.6f, 1.8f));
+        if(ResetJumpCoroutine != null) StopCoroutine(ResetJumpCoroutine);
     }
 
     void OnCollisionEnter(Collision other) 
@@ -63,6 +72,7 @@ public class SpringCharacterController : CharacterController
             {
                 ModelAnimator.SetTrigger("JumpExit");
                 IsGrounded = true;
+                IsJumping = false;
             }
         }
     }
@@ -80,5 +90,13 @@ public class SpringCharacterController : CharacterController
             }
         }
         return false;
+    }
+
+    // Dirty hack to fix the bug of not being grounded sometimes, if they haven't landed on the ground 3s after jumping
+    // just reset the grounded state lol
+    private IEnumerator ResetJumpIEnum()
+    {
+        yield return new WaitForSeconds(3.0f);
+        IsJumping = false;
     }
 }
