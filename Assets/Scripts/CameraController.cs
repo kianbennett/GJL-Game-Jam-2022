@@ -57,10 +57,10 @@ public class CameraController : Singleton<CameraController>
                 SmoothToTarget = false;
             }
 
-            if(Input.mouseScrollDelta.y != 0)
-            {
-                Zoom(Input.mouseScrollDelta.y);
-            }
+            // if(Input.mouseScrollDelta.y != 0)
+            // {
+            //     Zoom(Input.mouseScrollDelta.y);
+            // }
 
             if(OverrideLocalCameraPos.HasValue)
             {

@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class HelpMenu : MonoBehaviour
 {
+    [SerializeField] private Button ButtonOk;
     private bool OpenedFromPauseMenu;
+
+    // private PlayerControls Controls;
+
+    void OnEnable()
+    {
+        ButtonOk.Select();
+    }
 
     public void Open(bool FromPauseMenu)
     {

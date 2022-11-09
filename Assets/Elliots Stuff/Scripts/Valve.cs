@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Valve : MonoBehaviour
 {
@@ -19,6 +20,29 @@ public class Valve : MonoBehaviour
         valveOn = false;
         this.GetComponent<TriggerObject>().active = false;
     }
+
+    private PlayerControls Controls;
+    private InputAction InputActionActivate;
+
+    void OnEnable()
+    {
+        Controls = new PlayerControls();
+        InputActionActivate = Controls.Player.Activate;
+        InputActionActivate.Enable();
+        InputActionActivate.performed += delegate 
+        {
+            if(PlayerController.Instance.HasStarted && IsActivePlayerInRange())
+            {
+                TurnValve();
+            }
+        };
+    }
+
+    void OnDisable()
+    {
+        if(InputActionActivate != null) InputActionActivate.Disable();
+    }
+
     public void TurnValve()
     {
         if (valveOn)
@@ -39,11 +63,6 @@ public class Valve : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if (PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E) && IsActivePlayerInRange())
-        {
-            TurnValve();
-        }
-
         Outline.enabled = IsActivePlayerInRange();
         Outline.OutlineColor = valveOn ? OutlineColourOn : OutlineColourOff;
     }

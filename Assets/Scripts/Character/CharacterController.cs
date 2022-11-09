@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
@@ -21,11 +20,21 @@ public class CharacterController : MonoBehaviour
     private Quaternion TargetModelRotation;
     protected bool CanMove;
 
+    private PlayerControls Controls;
+    private InputAction InputActionMove;
+
     protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
         TargetModelRotation = Quaternion.identity;
         CanMove = true;
+    }
+
+    void OnEnable()
+    {
+        Controls = new PlayerControls();
+        InputActionMove = Controls.Player.Move;
+        InputActionMove.Enable();
     }
 
     protected virtual void Update()
@@ -36,7 +45,8 @@ public class CharacterController : MonoBehaviour
 
         if(IsActive && PlayerController.Instance.HasStarted && CanMove && !CameraController.Instance.IsInCutscene())
         {
-            MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            MoveInput = InputActionMove.ReadValue<Vector2>();
+            // MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if(MoveInput.magnitude > 1) MoveInput.Normalize();
         }
 

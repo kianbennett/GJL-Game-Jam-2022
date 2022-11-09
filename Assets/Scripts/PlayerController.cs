@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -11,6 +12,12 @@ public class PlayerController : Singleton<PlayerController>
 
     [SerializeField] private Vector3 CameraLocalPositionInit;
     [SerializeField] private Vector3 CameraLocalRotationInit;
+
+    private PlayerControls Controls;
+    private InputAction InputActionNextCharacter;
+    private InputAction InputActionPrevCharacter;
+    private InputAction InputActionPerformAction;
+    private InputAction InputActionPause;
 
     private bool Paused;
     private Level CurrentLevel;
@@ -26,31 +33,42 @@ public class PlayerController : Singleton<PlayerController>
         CameraController.Instance.SetOverrideLocalCameraPos(CameraLocalPositionInit);
         CameraController.Instance.SetOverrideLocalCameraRot(CameraLocalRotationInit);
         CameraController.Instance.SetPostProcessingEffectEnabled<UnityEngine.Rendering.Universal.DepthOfField>(true);
+
+        Controls = new PlayerControls();
     }
 
-    void Update()
+    void OnEnable()
     {
-        if(HasStarted)
-        {
-            if(Input.GetKeyDown(KeyCode.Alpha1)) SwitchToCharacter(0);
-            if(Input.GetKeyDown(KeyCode.Alpha2)) SwitchToCharacter(1);
-            if(Input.GetKeyDown(KeyCode.Alpha3)) SwitchToCharacter(2);
+        InputActionNextCharacter = Controls.Player.NextCharacter;
+        InputActionPrevCharacter = Controls.Player.PrevCharacter;
+        InputActionPerformAction = Controls.Player.Action;
+        InputActionPause = Controls.Player.Pause;
 
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                Characters[ActiveCharacter].PerformAction();
-            }
+        InputActionNextCharacter.Enable();
+        InputActionPrevCharacter.Enable();
+        InputActionPerformAction.Enable();
+        InputActionPause.Enable();
 
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetPaused(!Paused);
-            }
-        }
+        InputActionNextCharacter.performed += delegate { NextCharacter(); };
+        InputActionPrevCharacter.performed += delegate { PrevCharacter(); };
+        InputActionPerformAction.performed += delegate 
+        { 
+            if(HasStarted && !Paused) Characters[ActiveCharacter].PerformAction(); 
+        };
+        InputActionPause.performed += delegate { if(HasStarted) SetPaused(!Paused); };
+    }
+
+    void OnDisable()
+    {
+        InputActionNextCharacter.Disable();
+        InputActionPrevCharacter.Disable();
+        InputActionPerformAction.Disable();
+        InputActionPause.Disable();
     }
 
     private void SwitchToCharacter(int Character, bool PlaySFX = true)
     {
-        if(CameraController.Instance.IsInCutscene()) return;
+        if(CameraController.Instance.IsInCutscene() || Paused) return;
 
         Characters[ActiveCharacter].SetAsActiveController(false);
         ActiveCharacter = Character;
@@ -58,6 +76,20 @@ public class PlayerController : Singleton<PlayerController>
         CameraController.Instance.SetTarget(Characters[ActiveCharacter].transform);
 
         if(PlaySFX) AudioManager.Instance.SfxCharacterChange.PlayAsSFX(Random.Range(0.5f, 0.6f));
+    }
+
+    private void NextCharacter()
+    {
+        int NextCharIndex = ActiveCharacter + 1;
+        if(NextCharIndex > 2) NextCharIndex = 0;
+        SwitchToCharacter(NextCharIndex);
+    }
+
+    private void PrevCharacter()
+    {
+        int PrevCharIndex = ActiveCharacter - 1;
+        if(PrevCharIndex < 0) PrevCharIndex = 2;
+        SwitchToCharacter(PrevCharIndex);
     }
 
     public bool IsPaused()

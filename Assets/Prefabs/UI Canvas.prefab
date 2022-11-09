@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954b614b9d0bc7a4aa6201c26c432dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonOk: {fileID: 772634928}
 --- !u!1 &240597331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1050,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press any key to begin
+  m_text: Press any button to begin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d1d7835a7e4f3494b9c4c16aa9eb6643, type: 2}
   m_sharedMaterial: {fileID: 6283594717189893855, guid: d1d7835a7e4f3494b9c4c16aa9eb6643,
@@ -1335,7 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.7437599, b: 0.551869, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1365,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 0
+    m_Mode: -1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1373,7 +1374,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+    m_NormalColor: {r: 0.8679245, g: 0.7248797, b: 0.3717337, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3458,10 +3459,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bunch of exposition blah blah blah
+  m_text: 'the steambots are trying to escape a factory, but you need to save them
+    all as each robot has their own unique ability!
 
-    Description of what the game is
-    and what your objective is'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c9a65a1a0696c8499fee9313cf59e52, type: 2}
   m_sharedMaterial: {fileID: 6562913146569362988, guid: 1c9a65a1a0696c8499fee9313cf59e52,
@@ -6275,7 +6276,7 @@ RectTransform:
   - {fileID: 10787896}
   - {fileID: 1728393521}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6530,7 +6531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3990350336156699592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6636,7 +6637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3990350336199779609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7271,7 +7272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3990350336670540883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8093,6 +8094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7670ecfdb80b144bfe3b0678be9a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonResume: {fileID: 3990350336808649113}
 --- !u!1 &3990350337514470171
 GameObject:
   m_ObjectHideFlags: 0

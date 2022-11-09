@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Lever : MonoBehaviour
 {
@@ -14,12 +15,35 @@ public class Lever : MonoBehaviour
     private bool shrinkInRange;
     private int activePlayer;
 
+    private PlayerControls Controls;
+    private InputAction InputActionActivate;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         leverOn = false;
         // this.GetComponent<TriggerObject>().active = false;
     }
+
+    void OnEnable()
+    {
+        Controls = new PlayerControls();
+        InputActionActivate = Controls.Player.Activate;
+        InputActionActivate.Enable();
+        InputActionActivate.performed += delegate 
+        {
+            if(PlayerController.Instance.HasStarted && IsActivePlayerInRange())
+            {
+                PullLever();
+            }
+        };
+    }
+
+    void OnDisable()
+    {
+        if(InputActionActivate != null) InputActionActivate.Disable();
+    }
+
     public void PullLever()
     {
         if(leverOn)
@@ -41,10 +65,6 @@ public class Lever : MonoBehaviour
     private void Update()
     {
         activePlayer = GameObject.Find("PlayerController").GetComponent<PlayerController>().ActiveCharacter;
-        if(PlayerController.Instance.HasStarted && Input.GetKeyDown(KeyCode.E) && IsActivePlayerInRange())
-        {
-            PullLever();
-        }
         Outline.enabled = IsActivePlayerInRange();
         Outline.OutlineColor = leverOn ? OutlineColourOn : OutlineColourOff;
     }

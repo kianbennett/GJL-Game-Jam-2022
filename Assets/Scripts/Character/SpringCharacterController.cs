@@ -50,7 +50,6 @@ public class SpringCharacterController : CharacterController
             ModelAnimator.SetTrigger("JumpInto");
             if(ResetJumpCoroutine != null) StopCoroutine(ResetJumpCoroutine);
             StartCoroutine(ResetJumpIEnum());
-            Debug.Log("Jump");
         }
     }
 
