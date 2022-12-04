@@ -316,6 +316,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8d1fdf1e-86dd-4bde-8fd3-dd40e716a780",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "NextCharacter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6cd726e8-af2c-4e63-90fb-4ff9529e1289",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -343,6 +354,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "PrevCharacter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "411e92ba-db0b-4e0b-8133-b5b2cf571cfd",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "PrevCharacter",
                     "isComposite": false,
                     "isPartOfComposite": false

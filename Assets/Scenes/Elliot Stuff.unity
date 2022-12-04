@@ -14286,6 +14286,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 763729835, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_text
+      value: 'Thank you for playing the demo for steambots!
+
+
+        Made by zeta
+        games:
+
+
+        Vic primmer
+
+        Emily everett
+
+        Elliot jermy
+
+        harley
+        driver
+
+        kian bennett'
+      objectReference: {fileID: 0}
     - target: {fileID: 941993748, guid: bcb27057ab848374f9be038625cf2701, type: 3}
       propertyPath: m_text
       value: 'Move
@@ -14298,10 +14318,90 @@ PrefabInstance:
 
         Pause'
       objectReference: {fileID: 0}
+    - target: {fileID: 1152003748, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003749, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003752, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003752, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152003752, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1243839886, guid: bcb27057ab848374f9be038625cf2701, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1699109099, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109102, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109102, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109102, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109102, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109103, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109103, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699109103, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728393520, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728393522, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+      propertyPath: PlayAgainButton
+      value: 
+      objectReference: {fileID: 432697738}
     - target: {fileID: 3990350335482895413, guid: bcb27057ab848374f9be038625cf2701,
         type: 3}
       propertyPath: CharacterAnimator
@@ -14574,6 +14674,18 @@ PrefabInstance:
       insertIndex: 8
       addedObject: {fileID: 1962657969}
   m_SourcePrefab: {fileID: 100100000, guid: bcb27057ab848374f9be038625cf2701, type: 3}
+--- !u!114 &432697738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1152003751, guid: bcb27057ab848374f9be038625cf2701,
+    type: 3}
+  m_PrefabInstance: {fileID: 432697737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &432887845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27213,7 +27325,7 @@ PrefabInstance:
     - target: {fileID: 2412385849305719573, guid: f812c4b087dcabb4caaedb41d4b1ce09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2412385849305719573, guid: f812c4b087dcabb4caaedb41d4b1ce09,
         type: 3}
@@ -43702,6 +43814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2009665600943568530, guid: f8119ff88f39be24f86da6b4190b209d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
